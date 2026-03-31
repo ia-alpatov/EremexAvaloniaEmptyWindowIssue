@@ -1,0 +1,40 @@
+<mx:MxWindow xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:EremexAvaloniaEmptyWindowIssue.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mx="https://schemas.eremexcontrols.net/avalonia"
+        xmlns:mxb="https://schemas.eremexcontrols.net/avalonia/bars"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Width="100"
+        Height="100"
+        WindowStartupLocation="CenterScreen"
+        x:Class="EremexAvaloniaEmptyWindowIssue.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/EMXControls.ico"
+        Title="EremexAvaloniaEmptyWindowIssue">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <mxb:ToolbarManager IsWindowManager="True">
+        <Grid RowDefinitions="Auto, *, Auto" ColumnDefinitions="Auto, *, Auto">
+            <mxb:ToolbarContainerControl DockType="Top" Grid.ColumnSpan="3">
+                <mxb:Toolbar x:Name="MainMenu" ToolbarName="Main Menu" DisplayMode="MainMenu">
+                    <mxb:ToolbarMenuItem Header="File" Category="File">
+                        <mxb:ToolbarButtonItem Header="Open"
+                                               Category="File" Command="{Binding OpenFile}"
+                                               CommandParameter="{Binding $parent[mx:MxWindow]}" />
+                        <mxb:ToolbarButtonItem Header="Save"
+                                               HotKey="Ctrl+S"
+                                               Category="File" Command="{Binding SaveFile}"
+                                               CommandParameter="{Binding $parent[mx:MxWindow]}" />
+                    </mxb:ToolbarMenuItem>
+                </mxb:Toolbar>
+            </mxb:ToolbarContainerControl>
+        </Grid>
+    </mxb:ToolbarManager>
+</mx:MxWindow>
